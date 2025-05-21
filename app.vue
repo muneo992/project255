@@ -13,4 +13,3 @@
     <NuxtRouteAnnouncer />
     <We are Gloria Trading />
   </div>
-</template>
