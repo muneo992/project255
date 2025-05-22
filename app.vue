@@ -1,15 +1,16 @@
 <template>
-  <NuxtPage />
-</template>
-
-<script setup>
-</script>
-
-<style>
-/* 必要に応じてスタイルを記述 */
-</style>
-
   <div>
     <NuxtRouteAnnouncer />
-    <We are Gloria Trading />
+    <WeAreGloriaTrading />
   </div>
+</template>
+
+<script>
+import WeAreGloriaTrading from './components/WeAreGloriaTrading.vue';
+
+export default {
+  components: {
+    WeAreGloriaTrading,
+  },
+};
+</script>
