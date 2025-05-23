@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Welcome to Nuxt.js</h1>
-    <p>This is the home page.</p>
+    <h1>Welcome to My Nuxt App</h1>
+    <p>This is the homepage.</p>
   </div>
 </template>
 
@@ -11,8 +11,3 @@ export default {
 };
 </script>
 
-<style scoped>
-h1 {
-  color: #007bff;
-}
-</style>

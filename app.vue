@@ -1,16 +1,12 @@
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <WeAreGloriaTrading />
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <script>
-import WeAreGloriaTrading from './components/WeAreGloriaTrading.vue';
-
 export default {
-  components: {
-    WeAreGloriaTrading,
-  },
+  name: 'App',
 };
 </script>
+

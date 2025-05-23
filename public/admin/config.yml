@@ -1,0 +1,23 @@
+backend:
+  name: github
+  repo: muneo992/project25_5  # リポジトリ名 (例: user/repo)
+  branch: master                      # 管理するブランチ
+  auth_scope: repo                  # 必要な権限スコープ
+
+media_folder: "public/uploads"      # メディアファイルの保存先
+public_folder: "/uploads"           # メディアファイルの公開URL
+
+collections:
+  - name: "cars"
+    label: "Cars"
+    folder: "content/cars"          # 車データを保存するフォルダ
+    create: true
+    slug: "{{fields.manufacturer}}-{{fields.model}}"
+    fields:
+      - { name: "manufacturer", label: "Manufacturer", widget: "string" }
+      - { name: "model", label: "Model", widget: "string" }
+      - { name: "price", label: "Price", widget: "number" }
+      - { name: "year", label: "Year", widget: "number" }
+      - { name: "mileage", label: "Mileage (km)", widget: "number" }
+      - { name: "description", label: "Description", widget: "text" }
+      - { name: "image", label: "Image", widget: "image" }

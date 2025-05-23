@@ -1,0 +1,5 @@
+{
+  "vue.features.codeActions": true,
+  "vue.features.diagnostics": true
+}
+
