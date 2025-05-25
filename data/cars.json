@@ -1,0 +1,23 @@
+[
+  {
+    "model": "toyota-corolla",
+    "name": "Toyota Corolla",
+    "year": 2023,
+    "price": 20000,
+    "description": "A reliable and fuel-efficient compact car."
+  },
+  {
+    "model": "honda-civic",
+    "name": "Honda Civic",
+    "year": 2022,
+    "price": 22000,
+    "description": "A sporty and stylish sedan with advanced features."
+  },
+  {
+    "model": "ford-mustang",
+    "name": "Ford Mustang",
+    "year": 2021,
+    "price": 30000,
+    "description": "An iconic American muscle car with powerful performance."
+  }
+]
