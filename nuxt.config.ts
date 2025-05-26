@@ -53,10 +53,8 @@ export default defineNuxtConfig({
   },
 
   // **プラグインの設定**
-  plugins: [{ src: '~/plugins/auth0.js', mode: 'client' }]// クライアントサイド専用
-  
-  modules: ['@nuxt/content']
-  // **ランタイム設定**
+  plugins: [{ src: '~/plugins/auth0.js', mode: 'client' }],// クライアントサイド専用
+  modules: ['@nuxt/content'], 
   runtimeConfig: {
     public: {}, // 公開設定（クライアントで使用可能）
     private: {
