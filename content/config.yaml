@@ -13,6 +13,6 @@ collections:
       - name: description
         type: text
         required: false
-      - name: image
+      - name: imageccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
         type: string
         required: false

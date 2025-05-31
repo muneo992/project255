@@ -1,6 +1,5 @@
 {
   "name": "nuxt-app",
-  "private": true,
   "type": "module",
   "scripts": {
     "build": "nuxt build",
@@ -20,5 +19,8 @@
     "react-dom": "^18.3.1",
     "vue": "^3.5.14",
     "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
   }
 }
