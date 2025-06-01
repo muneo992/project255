@@ -1,5 +1,4 @@
-import { writeFileSync, mkdirSync, existsSync } from 'fs';
-import { readFileSync } from 'fs-extra'; // ファイル操作用
+import { writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from 'fs';
 import path from 'path';
 
 export default defineNuxtConfig({
@@ -9,9 +8,17 @@ export default defineNuxtConfig({
     async routes() {
       // `content/cars` フォルダ内の全ファイルを取得
       const contentDir = path.resolve('./content/cars');
-      const carFiles = readFileSync(contentDir, { withFileTypes: true })
-        .filter(file => file.isDirectory())
-        .map(dir => `/cars/${dir.name}`); // 動的ルートを生成
+      
+      // エラーハンドリング: ディレクトリが存在しない場合
+      if (!existsSync(contentDir)) {
+        console.warn(`Directory ${contentDir} does not exist.`);
+        return ['/', '/admin'];
+      }
+
+      // ディレクトリ内のサブディレクトリを取得
+      const carFiles = readdirSync(contentDir)
+        .filter(file => statSync(path.join(contentDir, file)).isDirectory()) // ディレクトリのみ取得
+        .map(dir => `/cars/${dir}`); // 動的ルートを生成
 
       return ['/', '/admin', ...carFiles];
     },
@@ -59,3 +66,4 @@ export default defineNuxtConfig({
     },
   },
 });
+
