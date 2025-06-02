@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: muneo992/project25_5  # リポジトリ名 (例: user/repo)
-  branch: master                      # 管理するブランチ
+  branch: main                     # 管理するブランチ
   auth_scope: repo                  # 必要な権限スコープ
 
 media_folder: "public/uploads"      # メディアファイルの保存先
