@@ -15,12 +15,18 @@ export default defineNuxtConfig({
         return ['/', '/admin'];
       }
 
-      // ディレクトリ内のサブディレクトリを取得
-      const carFiles = readdirSync(contentDir)
-        .filter(file => statSync(path.join(contentDir, file)).isDirectory()) // ディレクトリのみ取得
-        .map(dir => `/cars/${dir}`); // 動的ルートを生成
+      try {
+        // ディレクトリ内のサブディレクトリを取得
+        const carFiles = readdirSync(contentDir)
+          .filter(file => statSync(path.join(contentDir, file)).isDirectory()) // ディレクトリのみ取得
+          .map(dir => `/cars/${encodeURIComponent(dir)}`); // 動的ルートを生成
 
-      return ['/', '/admin', ...carFiles];
+        console.log('Generated routes:', carFiles); // デバッグ用ログ
+        return ['/', '/admin', ...carFiles];
+      } catch (error) {
+        console.error('Error generating routes:', error);
+        return ['/', '/admin']; // エラー発生時のフォールバック
+      }
     },
   },
 
@@ -48,8 +54,12 @@ export default defineNuxtConfig({
         if (!existsSync(distDir)) {
           mkdirSync(distDir);
         }
-        const redirects = '/*    /index.html   200\n';
-        writeFileSync(`${distDir}/_redirects`, redirects);
+        const redirects = `
+/admin/*    /admin/index.html   200
+/*          /index.html         200
+`;
+        writeFileSync(`${distDir}/_redirects`, redirects.trim());
+        console.log('_redirects file generated successfully.');
       } catch (error) {
         console.error('Error generating _redirects file:', error);
       }
@@ -66,4 +76,3 @@ export default defineNuxtConfig({
     },
   },
 });
-
