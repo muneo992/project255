@@ -1,16 +1,21 @@
 import { createAuth0Client } from '@auth0/auth0-spa-js';
 
 export default defineNuxtPlugin(async (nuxtApp) => {
-  // クライアントサイドでのみ実行
-  if (process.server) return;
-
-  const auth0 = await createAuth0Client({
-    domain: 'YOUR_AUTH0_DOMAIN',
-    clientId: 'YOUR_AUTH0_CLIENT_ID',
+  const auth0Client = await createAuth0Client({
+    domain: 'dev-olkr47luvghfb4t5.us.auth0.com',
+    clientId: 'IHA75IDoCPFQcPHneVkn4viHW6eE1KWc',
     authorizationParams: {
-      redirect_uri: window.location.origin, // クライアントサイドでのみ使用可能
+      redirect_uri: window.location.origin, // 認証後のリダイレクト先
     },
   });
 
-  nuxtApp.provide('auth0', auth0);
+  // リダイレクト後の処理
+  const query = new URLSearchParams(window.location.search);
+  if (query.has('code') && query.has('state')) {
+    await auth0Client.handleRedirectCallback();
+    window.history.replaceState({}, document.title, '/'); // 必要に応じてリダイレクト先を変更
+  }
+
+  nuxtApp.provide('auth0', auth0Client);
 });
+
