@@ -1,31 +1,29 @@
 import { writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from 'fs';
 import path from 'path';
+import { defineNuxtConfig } from 'nuxt/config';
 
 export default defineNuxtConfig({
   target: 'static',
 
   generate: {
-    async routes() {
-      // `content/cars` フォルダ内の全ファイルを取得
+    routes: (): string[] => {
       const contentDir = path.resolve('./content/cars');
-      
-      // エラーハンドリング: ディレクトリが存在しない場合
+
       if (!existsSync(contentDir)) {
         console.warn(`Directory ${contentDir} does not exist.`);
         return ['/', '/admin'];
       }
 
       try {
-        // ディレクトリ内のサブディレクトリを取得
         const carFiles = readdirSync(contentDir)
-          .filter(file => statSync(path.join(contentDir, file)).isDirectory()) // ディレクトリのみ取得
-          .map(dir => `/cars/${encodeURIComponent(dir)}`); // 動的ルートを生成
+          .filter((file: string) => statSync(path.join(contentDir, file)).isDirectory())
+          .map((dir: string) => `/cars/${encodeURIComponent(dir)}`);
 
-        console.log('Generated routes:', carFiles); // デバッグ用ログ
+        console.log('Generated routes:', carFiles);
         return ['/', '/admin', ...carFiles];
       } catch (error) {
         console.error('Error generating routes:', error);
-        return ['/', '/admin']; // エラー発生時のフォールバック
+        return ['/', '/admin'];
       }
     },
   },
@@ -76,3 +74,8 @@ export default defineNuxtConfig({
     },
   },
 });
+
+
+    
+  
+
