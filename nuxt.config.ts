@@ -16,8 +16,8 @@ export default defineNuxtConfig({
 
       try {
         const carFiles = readdirSync(contentDir)
-          .filter((file: string) => statSync(path.join(contentDir, file)).isDirectory())
-          .map((dir: string) => `/cars/${encodeURIComponent(dir)}`);
+          .filter((file: string) => statSync(path.join(contentDir, file)).isFile())
+          .map((file: string) => `/cars/${encodeURIComponent(file.replace(/\.md$/, ''))}`);
 
         console.log('Generated routes:', carFiles);
         return ['/', '/admin', ...carFiles];
@@ -74,6 +74,7 @@ export default defineNuxtConfig({
     },
   },
 });
+
 
 
     
