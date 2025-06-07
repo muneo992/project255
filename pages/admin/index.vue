@@ -1,14 +1,12 @@
 <template>
   <div>
-    <h1>管理画面</h1>
+    <h1>管理画面トップページ</h1>
     <p>ここは管理者専用のページです。</p>
   </div>
 </template>
 
 <script>
 export default {
-  layout: "admin", // 管理画面専用のレイアウトを指定
+  middleware: "auth", // 認証ミドルウェアを適用
 };
 </script>
-
-
