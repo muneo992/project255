@@ -1,21 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Admin Panel</title>
-    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
-    <script>
-      window.CMS_MANUAL_INIT = true; // 手動初期化を有効にします
-    </script>
+    <title>Admin</title>
+    <!-- DecapCMS スタイル -->
+    <link rel="stylesheet" href="https://unpkg.com/decap-cms@latest/dist/decap-cms.css" />
   </head>
   <body>
+    <!-- CMS を初期化するための要素 -->
+    <div id="cms"></div>
+
+    <!-- DecapCMS スクリプト -->
+    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+
+    <!-- CMS 初期化スクリプト -->
     <script>
-      try {
-        DecapCMS.init();
-        console.log('CMS successfully initialized.');
-      } catch (error) {
-        console.error('Error initializing CMS:', error);
-      }
+      document.addEventListener('DOMContentLoaded', function () {
+        window.CMS.init();
+      });
     </script>
   </body>
 </html>
+
 

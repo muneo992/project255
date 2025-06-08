@@ -1,9 +1,14 @@
 import { createAuth0Client } from '@auth0/auth0-spa-js';
 
 export default defineNuxtPlugin(async (nuxtApp) => {
+  // 環境変数からドメインとクライアントIDを取得
+  const domain = process.env.AUTH0_DOMAIN || 'default-domain.auth0.com';
+  const clientId = process.env.AUTH0_CLIENT_ID || 'default-client-id';
+
+  // Auth0 クライアントの作成
   const auth0Client = await createAuth0Client({
-    domain: process.env.dev-olkr47luvghfb4t5.us.auth0.com,
-    clientId: process.env.IHA75IDoCPFQcPHneVkn4viHW6eE1KWc,
+    domain: domain,
+    clientId: clientId,
     authorizationParams: {
       redirect_uri: window.location.origin, // 認証後のリダイレクト先
     },
@@ -28,6 +33,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     console.log('User is not authenticated:', error);
   }
 
+  // Auth0 クライアントを Nuxt アプリケーションに提供
   nuxtApp.provide('auth0', auth0Client);
 });
 
